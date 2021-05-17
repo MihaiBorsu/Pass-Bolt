@@ -1,9 +1,9 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.23;
 
 contract Owner {
     address public ownerAddress;
 
-    function Owned() internal {
+    constructor () internal {
         ownerAddress = msg.sender;
     }
 

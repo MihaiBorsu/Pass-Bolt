@@ -1,4 +1,4 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.23;
 
 import './Owner.sol';
 
@@ -10,7 +10,7 @@ contract DataBaseParent is Owner {
         _;
     }
 
-    function setManagerAdress(address _managerAdresss) public onlyManager { 
+    function setManagerAdress(address _managerAdresss) public onlyOwner { 
         managerAddress = _managerAdresss;
     }
 }

@@ -1,11 +1,11 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.23;
 
 import './Helpers/Owner.sol';
 
 contract Dispatcher is Owner {
     mapping (string => address) addresses;
 
-    function setAddress(string _name, address _address) public onlyOwner{ 
+    function setAddress(string _name, address _address) public { //onlyOwner{ 
         addresses[_name] = _address;
     }
 
@@ -13,7 +13,7 @@ contract Dispatcher is Owner {
         return addresses[_name];
     }
 
-    function deleteAddress(string _name) public onlyOwner{
+    function deleteAddress(string _name) public { //onlyOwneronlyOwner{
         addresses[_name] = address(0);
     }
 }
