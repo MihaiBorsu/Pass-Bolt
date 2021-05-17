@@ -16,7 +16,7 @@ module.exports = (deployer) => {
     })
     .then(([dispatcher, database]) => {
         return Promise.all([
-            dispatcher.setAdresss("UserManager", UserManager.address),
+            dispatcher.setAddress("UserManager", UserManager.address),
             database.setManagerAdress(UserManager.address),
         ])
     })

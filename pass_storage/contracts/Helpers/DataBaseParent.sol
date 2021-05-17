@@ -10,7 +10,7 @@ contract DataBaseParent is Owner {
         _;
     }
 
-    function setmanagerAdress(address _managerAdresss) public onlyManager {
+    function setManagerAdress(address _managerAdresss) public onlyManager { 
         managerAddress = _managerAdresss;
     }
 }

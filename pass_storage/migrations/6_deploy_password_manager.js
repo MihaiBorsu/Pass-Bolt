@@ -1,5 +1,5 @@
 const PasswordManager = artifacts.require("PasswordManager");
-const PasswordsDataBase = artifacts.require("PasswordsDataBase");
+const PasswordDataBase = artifacts.require("PasswordDataBase");
 const Dispatcher = artifacts.require('Dispatcher')
 
 module.exports = (deployer) => {
@@ -11,7 +11,7 @@ module.exports = (deployer) => {
         passwordMngr.setDispatcherAddress(Dispatcher.address)
         return Promise.all([
             Dispatcher.deployed(),
-            PasswordsDataBase.deployed(),
+            PasswordDataBase.deployed(),
         ])
     })
     .then(([dispatcher, database]) => {

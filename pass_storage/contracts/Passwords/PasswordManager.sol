@@ -3,7 +3,7 @@ pragma solidity ^0.4.19;
 import '../Helpers/ManagerParent.sol';
 import '../Dispatcher.sol';
 import '../Users/UserDataBase.sol';
-import './PasswordsDataBase.sol';
+import './PasswordDataBase.sol';
 
 
 contract PasswordManager is ManagerParent {
