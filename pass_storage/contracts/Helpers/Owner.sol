@@ -1,4 +1,4 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.5.10;
 
 contract Owner {
     address public ownerAddress;

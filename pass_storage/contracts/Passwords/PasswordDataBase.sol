@@ -1,4 +1,4 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.5.10;
 
 import '../Helpers/DataBaseParent.sol';
 
@@ -15,7 +15,7 @@ contract PasswordDataBase is DataBaseParent {
 
     uint latestPasswordId = 0;
     
-    function createPassword (uint _userId, string _passHash) public onlyManager returns(uint){
+    function createPassword (uint _userId, string _passHash) public payable returns(uint){
         latestPasswordId++;
 
         Passwords[latestPasswordId] = Password(latestPasswordId, _userId, _passHash);
@@ -25,7 +25,7 @@ contract PasswordDataBase is DataBaseParent {
         return latestPasswordId;
     }
 
-    function getPasswordIdsFromUser (uint _userId) view public onlyManager returns(uint[]) { // retrieve all the passwords from a user
+    function getPasswordIdsFromUser (uint _userId) view public returns(uint[]) { // retrieve all the passwords from a user
         return userPasswordIds[_userId];
     }
 }
