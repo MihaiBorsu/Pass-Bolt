@@ -1,4 +1,4 @@
-pragma solidity ^0.5.10;
+pragma solidity ^0.4.23;
 
 import '../Helpers/DataBaseParent.sol';
 
@@ -17,7 +17,7 @@ contract UserDataBase is DataBaseParent {
 
     uint latestUserId = 0;
 
-    function createUser (address _address, bytes32 _username, bytes32 _givenName, bytes32 _familyName) public payable returns(uint _newUserId) {
+    function createUser (address _address, bytes32 _username, bytes32 _givenName, bytes32 _familyName) public onlyManager returns(uint _newUserId) {
         latestUserId++;
         profiles[latestUserId] = Profile(
             latestUserId, 

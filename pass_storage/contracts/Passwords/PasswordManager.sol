@@ -1,4 +1,4 @@
-pragma solidity ^0.5.10;
+pragma solidity ^0.4.23;
 
 import '../Helpers/ManagerParent.sol';
 import '../Dispatcher.sol';
@@ -7,7 +7,7 @@ import './PasswordDataBase.sol';
 
 
 contract PasswordManager is ManagerParent {
-    function createPassword (string _passHash) public payable returns(uint) {
+    function createPassword (string _passHash) public  returns(uint) {
         Dispatcher _dipatcher = Dispatcher(dispatcherAddress);
 
         address _userDataBaseAddress = _dipatcher.getAddress("UserDataBase");

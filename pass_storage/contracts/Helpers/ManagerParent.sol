@@ -1,11 +1,11 @@
-pragma solidity ^0.5.10;
+pragma solidity ^0.4.23;
 
 import './Owner.sol';
 
 contract ManagerParent is Owner {
     address dispatcherAddress;
 
-    function setDispatcherAddress(address _dispatcherAddress) public onlyOwner {
+    function setDispatcherAddress(address _dispatcherAddress) public onlyOwner{
         dispatcherAddress =_dispatcherAddress;
     }
 

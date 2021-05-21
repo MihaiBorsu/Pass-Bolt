@@ -1,11 +1,11 @@
-pragma solidity ^0.5.10;
+pragma solidity ^0.4.23;
 
 import '../Helpers/ManagerParent.sol';
 import '../Dispatcher.sol';
 import './UserDataBase.sol';
 
 contract UserManager is ManagerParent {
-    function createUser (string _username, string _givenName, string _familyName) public payable returns(uint _newUserId) {
+    function createUser (string _username, string _givenName, string _familyName) public returns(uint _newUserId) {
         Dispatcher _dipatcher = Dispatcher(dispatcherAddress);
 
         address _userDataBaseAddress = _dipatcher.getAddress("UserDataBase");
