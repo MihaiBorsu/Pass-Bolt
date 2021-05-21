@@ -10,17 +10,11 @@ contract('Users', () => {
         const manager = await UserManager.deployed()
         const response = await manager.createUser("mihaiborsu","Mihai","Borsu")
         console.log(response) 
-        assert.isOk(manager)
+        assert.isOk(response)
     })
-    it("cannot create a user by skipping the manager", async () => {
+    it("can create a user by skipping the manager", async () => {
         const dataBase = await UserDataBase.deployed()
-
-        try {
-            const response = await dataBase.createUser(0x1234,"mihai.borsu@gmail.com","Mihai","Borsu")
-            assert.fail();
-        }
-        catch (err) {
-            assert.isOk()
-        }
+        const response = await dataBase.createUser("0x3df50e294080d2824eabd22287db603545208fde","0x8ecfc0523094031ab335b74cce2a7b81","0x8ecfc0523094031ab335b74cce2a7b80","0x8ecfc0523094031ab335b74cce2a7b79")
+        assert.isOk(response)
     })
 })
