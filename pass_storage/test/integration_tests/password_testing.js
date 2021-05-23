@@ -1,9 +1,4 @@
 
-// const web3 = require('web3')
-// const { utils: {hexToString}, } = web3
-// const { utils: {stringToHex}, } = web3
-
-// const { assert } = require("console");
 
 const PasswordDataBase = artifacts.require('PasswordDataBase')
 const UserManager = artifacts.require('UserManager')
