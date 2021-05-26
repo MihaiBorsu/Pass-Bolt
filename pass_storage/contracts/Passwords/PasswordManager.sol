@@ -22,7 +22,7 @@ contract PasswordManager is ManagerParent {
         return _passwordDataBase.createPassword(_userId, _passHash);
     }
 
-    function getPasswordIdsFromUser () public returns(uint[]) {
+    function getPasswordIdsFromUser () public view returns(uint[]) {
         Dispatcher _dipatcher = Dispatcher(dispatcherAddress);
 
         address _userDataBaseAddress = _dipatcher.getAddress("UserDataBase");
@@ -37,7 +37,7 @@ contract PasswordManager is ManagerParent {
         return _passwordDataBase.getPasswordIdsFromUser(_userId);
     }
 
-    function getPassword (uint _passId) public returns (string memory passHash) {
+    function getPassword (uint _passId) public view returns (string memory passHash) {
         Dispatcher _dipatcher = Dispatcher(dispatcherAddress);
 
         address _userDataBaseAddress = _dipatcher.getAddress("UserDataBase");

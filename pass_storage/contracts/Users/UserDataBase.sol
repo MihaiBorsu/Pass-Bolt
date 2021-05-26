@@ -4,9 +4,9 @@ import '../Helpers/DataBaseParent.sol';
 
 contract UserDataBase is DataBaseParent {
 
-    mapping(uint => Profile) public profiles;
-    mapping (address => uint) public addresses;
-    mapping (bytes32 => uint) public usernames; 
+    mapping(uint => Profile) private profiles;
+    mapping (address => uint) private addresses;
+    mapping (bytes32 => uint) private usernames; 
 
     struct Profile {
         uint id;
@@ -30,5 +30,17 @@ contract UserDataBase is DataBaseParent {
         usernames[_username] = latestUserId;
 
         return latestUserId;
+    }
+
+    function getUsername(uint userId) public view onlyManager returns (bytes32) {
+        return profiles[userId].username;
+    }
+
+    function getGivenName(uint userId) public view onlyManager returns (bytes32) {
+        return profiles[userId].givenName;
+    }
+
+    function getFamilyName(uint userId) public view onlyManager returns (bytes32) {
+        return profiles[userId].familyName;
     }
 }

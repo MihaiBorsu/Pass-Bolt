@@ -1,6 +1,19 @@
 import { eth, getInstance } from './provider'
 import UserManager from './artifacts/UserManager.json'
 import UserDataBase from './artifacts/UserDataBase.json'
+import Web3 from "web3"
+
+export const handleNoWallet = async () => {
+    const noWallet = ( typeof web3 === "undefined" )
+
+    if (noWallet) 
+        return true
+    else{
+        const addrs = await eth.getAccounts()
+    }
+
+    return addrs.length === 0
+}
 
 export const getUser = async () => {
     // const dataBase = await getInstance(UserDataBase)
@@ -14,13 +27,15 @@ export const getUser = async () => {
     return "getUser not implemented yet"
 }
 
-export const createUser = async (username) => {
+export const createUser = async (username, givenName, familyName) => {
     const manager = await getInstance(UserManager)
     try {
         await ethereum.enable()
-        const wallets = eth.getAccounts() // get the whole 10 wtherium accounts with 100 fake eth on each on development network
+        const wallets = await eth.getAccounts()
         const response = await manager.createUser(
                 username,
+                givenName,
+                familyName,
                 {
                     from: wallets[0]
                 }

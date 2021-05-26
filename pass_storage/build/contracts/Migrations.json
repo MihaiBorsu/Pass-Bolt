@@ -116,7 +116,7 @@
                 "name": "msg",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
-                "referencedDeclaration": 516,
+                "referencedDeclaration": 675,
                 "src": "141:3:4",
                 "typeDescriptions": {
                   "typeIdentifier": "t_magic_message",
@@ -194,7 +194,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 516,
+                            "referencedDeclaration": 675,
                             "src": "239:3:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -248,10 +248,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        519,
-                        520
+                        678,
+                        679
                       ],
-                      "referencedDeclaration": 519,
+                      "referencedDeclaration": 678,
                       "src": "224:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -510,7 +510,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 516,
+                      "referencedDeclaration": 675,
                       "type": "msg",
                       "value": "msg"
                     },
@@ -600,10 +600,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                519,
-                                520
+                                678,
+                                679
                               ],
-                              "referencedDeclaration": 519,
+                              "referencedDeclaration": 678,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -644,7 +644,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 516,
+                                      "referencedDeclaration": 675,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -902,10 +902,34 @@
       "links": {},
       "address": "0xC77af7B77f3b5061BEe31153334BD8794039e4a0",
       "transactionHash": "0xb581214dec018dc977554f8b3dafe371fdf4d0194f405550e56c0deecf965789"
+    },
+    "1621954090262": {
+      "events": {},
+      "links": {},
+      "address": "0x319e46Ad8c6803BC75Bd25c551742ca6B615c1Ad",
+      "transactionHash": "0x94094bd04f0148398548b6e866ab87ea6ed837835e3fc8db09fa640a1be13830"
+    },
+    "1621962598156": {
+      "events": {},
+      "links": {},
+      "address": "0xD4F60DA4A959780cBf5E24ffA6bEa984D5232029",
+      "transactionHash": "0xbd3a3fe4a6af28c75507106e1ef30d879bc32a06e59f752c414e16e0a49c472c"
+    },
+    "1621963434749": {
+      "events": {},
+      "links": {},
+      "address": "0xCb07998D6F795306059a369622d161ac7634955C",
+      "transactionHash": "0x6d7b9bbb170ac34b693a412a7fa4a6148cd08d464154f22336464d3369d94d5a"
+    },
+    "1622045774873": {
+      "events": {},
+      "links": {},
+      "address": "0x7b1Cd757FcC5AB701f16383ACeB3E7B0757ebBf0",
+      "transactionHash": "0x568f3d6568b8db4e637f0eda96873016c0affe1ffffb79cc341e633cb9f07c95"
     }
   },
   "schemaVersion": "3.4.0",
-  "updatedAt": "2021-05-23T16:29:44.273Z",
+  "updatedAt": "2021-05-26T16:40:55.993Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

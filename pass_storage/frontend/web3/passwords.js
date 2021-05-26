@@ -6,13 +6,18 @@ export const getPassword = async () => {
     return "getPassword to be implemented"
 }
 
-export const addPassword = async () => {
-    // const passManager = getInstance(PasswordManager)
-    // try {
-    //     await etherium.enable()
-    //     return "addPassword to be implemented"
-    // }
-    // catch (err) {
+export const createPassword = async (passHash) => {
+    const passManager = getInstance(PasswordManager)
+    try {
+        await ethereum.enable()
+        const wallets = await eth.getAccounts()
+        const response = await passManager.createPassword(
+        
+        )
 
-    // }
+        return response
+    }
+    catch (err) {
+        console.error(err)
+    }
 }

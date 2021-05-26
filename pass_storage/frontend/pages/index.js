@@ -1,6 +1,6 @@
 import React from 'react'
 import { getUser, createUser } from '../web3/users'
-import { addPassword, getPassword } from '../web3/passwords'
+import { createPassword, getPassword } from '../web3/passwords'
 
 export default class IndexPage extends React.Component {
    
@@ -10,18 +10,18 @@ export default class IndexPage extends React.Component {
     }
 
     createUser = async () => {
-      const response = await createUser("Mihai")
-      console.log(response)
+      const response2 = await createUser("mihaiborsu_test2","Mihai_test2","Borsu_test2")
+      console.log(response2)
     }
 
-    addPassword = async () => {
-      const response = await addPassword()
-      console.log(response)
+    createPassword = async () => {
+      const response3 = await createPassword("SomePassHash")
+      console.log(response3)
     }
     
     getPassword = async () => {
-      const response = await getPassword()
-      console.log(response)
+      const response4 = await getPassword()
+      console.log(response4)
     }
 
     render() {
@@ -33,7 +33,7 @@ export default class IndexPage extends React.Component {
           <button onClick={this.createUser}>
             Create user 
           </button>
-          <button onClick={this.addPassword}>
+          <button onClick={this.createPassword}>
             Add Password
           </button>
           <button onClick={this.getPassword}>

@@ -16,4 +16,40 @@ contract UserManager is ManagerParent {
 
         return _dataBase.createUser(msg.sender, super.stringToHex32(_username), stringToHex32(_givenName), stringToHex32(_familyName));
     }
+
+    function getUsername () public view returns(bytes32) {
+        Dispatcher _dipatcher = Dispatcher(dispatcherAddress);
+
+        address _userDataBaseAddress = _dipatcher.getAddress("UserDataBase");
+        UserDataBase _userDataBase = UserDataBase(_userDataBaseAddress);
+        uint _userId = _userDataBase.addresses(msg.sender);
+
+        require(_userId != 0);
+
+        return _userDataBase.getUsername(_userId);
+    }
+
+    function getGivenName () public view returns (bytes32) {
+        Dispatcher _dipatcher = Dispatcher(dispatcherAddress);
+
+        address _userDataBaseAddress = _dipatcher.getAddress("UserDataBase");
+        UserDataBase _userDataBase = UserDataBase(_userDataBaseAddress);
+        uint _userId = _userDataBase.addresses(msg.sender);
+
+        require(_userId != 0);
+
+        return _userDataBase.getGivenName(_userId);
+    }
+
+    function getFamilyName() public view returns (bytes32) {
+        Dispatcher _dipatcher = Dispatcher(dispatcherAddress);
+
+        address _userDataBaseAddress = _dipatcher.getAddress("UserDataBase");
+        UserDataBase _userDataBase = UserDataBase(_userDataBaseAddress);
+        uint _userId = _userDataBase.addresses(msg.sender);
+
+        require(_userId != 0);
+
+        return _userDataBase.getFamilyName(_userId);
+    }
 } 
