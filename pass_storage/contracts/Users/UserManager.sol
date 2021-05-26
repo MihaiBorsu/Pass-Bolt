@@ -12,7 +12,7 @@ contract UserManager is ManagerParent {
         UserDataBase _dataBase = UserDataBase(_userDataBaseAddress);
 
         require(_dataBase.addresses(msg.sender) == 0);
-        require(_dataBase.usernames(super.stringToHex32(_username)) == 0);
+        // require(_dataBase.usernames(super.stringToHex32(_username)) == 0);
 
         return _dataBase.createUser(msg.sender, super.stringToHex32(_username), stringToHex32(_givenName), stringToHex32(_familyName));
     }

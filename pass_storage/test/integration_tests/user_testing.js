@@ -22,4 +22,22 @@ contract('Users', () => {
         console.log(hexToString(response[1]))
         assert.isOk(response)
     })
+    it("can get username", async () => {
+        const manager = await UserManager.deployed()
+        const response = await manager.getUsername()
+        console.log(hexToString(response))
+        assert.isOk(response)
+    })
+    it("can get givenName", async () => {
+        const manager = await UserManager.deployed()
+        const response = await manager.getGivenName()
+        console.log(hexToString(response))
+        assert.isOk(response)
+    })
+    it("can get familyName", async () => {
+        const manager = await UserManager.deployed()
+        const response = await manager.getFamilyName()
+        console.log(hexToString(response))
+        assert.isOk(response)
+    })
 })

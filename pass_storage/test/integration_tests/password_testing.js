@@ -12,7 +12,7 @@ contract('Passwords', () => {
 
     it("creates a pass following the normal procedure pass_testing file", async () => {
         const pManager = await PasswordManager.deployed()
-        const response = await pManager.createPassword("someStringHash")
+        const response = await pManager.createPassword("someStringHash","mihai.borsu.pass","http://someurl.com")
         assert.isOk(response)
     })
     it("should not create a password pretending to be someone else (or skipping the manager). this test should fail", async () => {
@@ -27,10 +27,24 @@ contract('Passwords', () => {
         console.log(response)
         assert.isOk(response)
     })
-    it("owner can retrive it's passwords based on known id", async () => {
+    it("owner can retrive it's passwords based on known pass_id", async () => {
         const pManager = await PasswordManager.deployed()
-        const response = await pManager.getPassword.call(2)
+        const response = await pManager.getPassword.call(1)
         console.log("password is")
+        console.log(response)
+        assert.isOk(response)
+    })
+    it("owner can retrive it's passwords usernames based on knwn pass_id", async () => {
+        const pManager = await PasswordManager.deployed()
+        const response = await pManager.getUsernameForPassword.call(1)
+        console.log("username for password is")
+        console.log(response)
+        assert.isOk(response)
+    })
+    it("owner can retrive it's passwords url's based on known pass_id", async () => {
+        const pManager = await PasswordManager.deployed()
+        const response = await pManager.getUrl.call(1)
+        console.log("urlfor password is")
         console.log(response)
         assert.isOk(response)
     })

@@ -5,7 +5,7 @@ import '../Helpers/DataBaseParent.sol';
 contract UserDataBase is DataBaseParent {
 
     mapping(uint => Profile) private profiles;
-    mapping (address => uint) private addresses;
+    mapping (address => uint) public addresses;
     mapping (bytes32 => uint) private usernames; 
 
     struct Profile {

@@ -3,6 +3,15 @@ import UserManager from './artifacts/UserManager.json'
 import UserDataBase from './artifacts/UserDataBase.json'
 import Web3 from "web3"
 
+export const getUserLoggedIn = async () => {
+    const addrs = await eth.getAccounts()
+
+    if (addrs === 0 || addrs.length === 0 )
+        return null
+    
+        
+}
+
 export const handleNoWallet = async () => {
     const noWallet = ( typeof web3 === "undefined" )
 
