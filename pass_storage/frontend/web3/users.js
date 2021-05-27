@@ -1,15 +1,42 @@
 import { eth, getInstance } from './provider'
 import UserManager from './artifacts/UserManager.json'
-import UserDataBase from './artifacts/UserDataBase.json'
 import Web3 from "web3"
 
-export const getUserLoggedIn = async () => {
-    const addrs = await eth.getAccounts()
+const {
+    utils: {
+      hexToString,
+    },
+  } = Web3
 
-    if (addrs === 0 || addrs.length === 0 )
-        return null
-    
-        
+export const getUserLoggedIn = async () => {
+    try {
+        const addrs = await eth.getAccounts()
+        if (addrs === 0 || addrs.length === 0 )
+           return null
+
+        const userManager = await getInstance(UserManager)
+        await ethereum.enable()
+        const wallets = await eth.getAccounts()
+
+        const _username = await userManager.getUsername({
+            from: wallets[0]
+        })
+        const _givenName = await userManager.getGivenName({
+            from: wallets[0]
+        })
+        const _familyName = await userManager.getFamilyName({
+            from: wallets[0]
+        })
+
+        return {
+            username: hexToString(_username),
+            givenName: hexToString(_givenName),
+            familyName: hexToString(_familyName),
+        }
+    }
+    catch (err) {
+        console.error(err)
+    }
 }
 
 export const handleNoWallet = async () => {
@@ -22,18 +49,6 @@ export const handleNoWallet = async () => {
     }
 
     return addrs.length === 0
-}
-
-export const getUser = async () => {
-    // const dataBase = await getInstance(UserDataBase)
-    // const user_profile = await dataBase.profiles.call(id) 
-    
-    // // to be modified to call the getter in userManager, 
-    // // to implement getter in user manager, 
-    // // to make profiles private after this and retsst contracts
-
-    // return user_profile
-    return "getUser not implemented yet"
 }
 
 export const createUser = async (username, givenName, familyName) => {
@@ -55,5 +70,4 @@ export const createUser = async (username, givenName, familyName) => {
     catch (err) {
         console.error("ERROR: ",err)
     }
-    // return "createUser not implemente yet"
 }
