@@ -1,7 +1,7 @@
 import Head from 'next/head'
-// import Header from "./Header"
+import Header from "./Header"
 
-export const Center = ({ children, style }) => {
+export const Center = ({ children, style }) => (
     <div style={style}>
     {children}
 
@@ -13,7 +13,7 @@ export const Center = ({ children, style }) => {
       }
     `}</style>
   </div>
-}
+)
 
 export const Page = ({ children }) => (
     <div>
@@ -21,7 +21,7 @@ export const Page = ({ children }) => (
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" />
       </Head>
 
-      {/* <Header /> {} */}
+      <Header /> {}
 
       <main>
         {children}

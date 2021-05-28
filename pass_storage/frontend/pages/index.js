@@ -5,7 +5,7 @@ import { Page } from "../components/Layout"
 
 export default class IndexPage extends React.Component {
    
-      getUserLoggedIn = async () => {
+    getUserLoggedIn = async () => {
       const response = await getUserLoggedIn()
       console.log(response)
     }
@@ -37,7 +37,8 @@ export default class IndexPage extends React.Component {
     }
 
     render() {
-      return (
+      return 
+      (
         <Page>
           <button onClick={this.getUserLoggedIn}>
             Get user details
@@ -55,6 +56,6 @@ export default class IndexPage extends React.Component {
             Get passwords id's from logged in user
           </button>
         </Page>
-      )
+      );
     }
   }
