@@ -1,7 +1,11 @@
 import React from 'react'
 import { getUserLoggedIn, createUser } from '../web3/users'
 import { createPassword, getPassword, getPasswordIdsFromUser } from '../web3/passwords'
-import { Page } from "../components/Layout"
+import { Page, Center } from "../components/Layout"
+import MetaMaskLogo from "../icons/metamask.svg"
+import Button from "../components/Button"
+import Modal from "../components/Modal"
+import RegistrationForm from "../components/RegistrationForm"
 
 export default class IndexPage extends React.Component {
    
@@ -36,26 +40,103 @@ export default class IndexPage extends React.Component {
       console.log(ids) 
     }
 
+    state = {
+      showRegisterModal: false,
+    }
+
+    toggleRegisterModal = async () => {
+      const { showRegisterModal } = this.state
+  
+      this.setState({
+        showRegisterModal: !showRegisterModal,
+      })
+    }
+
     render() {
-      return 
-      (
+      const { showRegisterModal } = this.state
+      return (
         <Page>
-          <button onClick={this.getUserLoggedIn}>
-            Get user details
-          </button>
-          <button onClick={this.createUser}>
-            Create user 
-          </button>
-          <button onClick={this.createPassword}>
-            Add password
-          </button>
-          <button onClick={this.getPassword}>
-            Get passwords
-          </button>
-          <button onClick={this.getPasswordIdsFromUser}>
-            Get passwords id's from logged in user
-          </button>
-        </Page>
+        <Center>
+          <h2>
+            A <mark>decentralized</mark> secure password storage service
+          </h2>
+
+          <div className="right-side">
+
+            <Button style={{
+              paddingLeft: 64, 
+            }} onClick={this.toggleRegisterModal}>
+              <MetaMaskLogo />
+              Create your account
+            </Button>
+
+            <div className="disclaimer">
+              <p>
+                MetaMask will automatically open and ask you to confirm a transaction.
+              </p>
+              <p>
+                Please note that creating an account on the Ethereum blockchain costs a small amount of Ether.
+              </p>
+            </div>
+          </div>
+        </Center>
+
+        <style jsx global>{`
+          html, body {
+            min-height: 100%;
+          }
+          body {
+            background-color: #262740;
+            background-image: url("/static/images/background.png");
+            background-size: cover;
+            background-position: center center;
+          }
+        `}</style>
+
+        {showRegisterModal && (
+          <Modal
+            onClose={this.toggleRegisterModal}
+          >
+            <RegistrationForm />
+          </Modal>
+        )}
+
+        <style jsx>{`
+          h2 {
+            font-size: 50px;
+            color: #FFFFFF;
+            line-height: 78px;
+            position: relative;
+            text-transform: uppercase;
+            max-width: 520px;
+            display: inline-block;
+          }
+          mark {
+            color: inherit;
+            background-color: #F26419;
+            padding: 0 7px;
+          }
+          .right-side {
+            float: right;
+            position: relative;
+            max-width: 320px;
+            text-align: center;
+            margin-top: 120px;
+          }
+          .right-side :global(svg) {
+            position: absolute;
+            margin-left: -46px;
+            margin-top: -8px;
+          }
+          .disclaimer {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            line-height: 23px;
+            font-weight: 400;
+            margin-top: 23px;
+          }
+        `}</style>
+      </Page>
       );
     }
   }
