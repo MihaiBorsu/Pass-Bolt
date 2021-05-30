@@ -19,10 +19,13 @@ export default class Header extends React.Component {
   async componentDidMount() {
     try {
       const userInfo= await getUserLoggedIn()
-      this.setState({
-        loggedIn: true,
-        userInfo,
-      })
+
+      if (userInfo) {
+        this.setState({
+          loggedIn: true,
+          userInfo,
+        })
+      }
     }
     catch (err) {
       console.error("Couldn't find user data, maybe you did not create one yet?", err)
@@ -38,7 +41,7 @@ export default class Header extends React.Component {
   }
 
   render() {
-    console.log("in render log ",this.state.userInfo, "bool", this.state.loggedIn)
+    console.log("in render log ",this.state.userInfo, "bool looggedIn", this.state.loggedIn)
     const {loggedIn, userInfo, showPasswordModal } = this.state
     return (
       <header>

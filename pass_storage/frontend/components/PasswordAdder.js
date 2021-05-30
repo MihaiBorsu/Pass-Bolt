@@ -45,8 +45,8 @@ const Input = ({ title, value, onChange }) => (
 export default class PasswordModal extends React.Component {
     state = {
         _passHash: "",
-        _passUsername: "",
-        _url: "",
+        usernameForPass: "",
+        url: "",
     }
 
     updateField = (fieldName, e) => {
@@ -57,15 +57,11 @@ export default class PasswordModal extends React.Component {
     }
 
     password = async () => {
-        const { passHash } = this.state._passHash
-        const { passUsername } = this.state._passUsername
-        const { url } = this.state._url
-
         const { onClose } = this.props
 
-        console.log(passHash, passUsername, url)
+        const { _passHash, usernameForPass, url } = this.state
 
-        await createPassword("test_debug", "testDebug", "url+debug")
+        await createPassword(_passHash, usernameForPass, url)
         alert("Password has been added to the blockchain!")
 
         onClose()
@@ -74,10 +70,10 @@ export default class PasswordModal extends React.Component {
     render () {
         const { onClose } = this.props
         const { _passHash } = this.state._passHash
-        const { _passUsername } = this.state._passUsername
-        const { _url } = this.state._url
+        const { usernameForPass } = this.state.usernameForPass
+        const { url } = this.state.url
 
-        const disabled = (_passHash === "" || _passUsername === "" || _url === "")
+        const disabled = (_passHash === "" || usernameForPass === "" || url === "")
 
         return (
             <div>
@@ -87,12 +83,12 @@ export default class PasswordModal extends React.Component {
 
                 <Input 
                     title="passHash" 
-                    onChange={e => this.updateField("passHash", e)} 
+                    onChange={e => this.updateField("_passHash", e)} 
                 />
 
                 <Input 
                     title="Username associated with your password" 
-                    onChange={e => this.updateField("passUsername", e)} 
+                    onChange={e => this.updateField("usernameForPass", e)} 
                 />
 
                 <Input 
@@ -103,7 +99,7 @@ export default class PasswordModal extends React.Component {
                 <footer>
                     <Button 
                         onClick={this.password}
-                        // disabled={disabled}
+                        disabled={disabled}
                     >
                         Add Password
                     </Button>

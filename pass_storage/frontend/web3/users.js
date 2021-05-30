@@ -9,33 +9,41 @@ const {
   } = Web3
 
 export const getUserLoggedIn = async () => {
-    try {
-        const addrs = await eth.getAccounts()
-        if (addrs === 0 || addrs.length === 0 )
-           return null
+    const addrs = await eth.getAccounts()
+    if ( !addrs || !addrs.length )
+        return null
 
-        const userManager = await getInstance(UserManager)
+    const manager = await getInstance(UserManager)
+    try { 
         await ethereum.enable()
         const wallets = await eth.getAccounts()
+        const userExists = await manager.checkUserExists(
+            { 
+                from:  wallets[0]
+            }
+            )
+        if (userExists) {
+            const userManager = await getInstance(UserManager)
+            await ethereum.enable()
+            const wallets = await eth.getAccounts()
 
-        const _username = await userManager.getUsername({
-            from: wallets[0]
-        })
-        const _givenName = await userManager.getGivenName({
-            from: wallets[0]
-        })
-        const _familyName = await userManager.getFamilyName({
-            from: wallets[0]
-        })
-
-        return {
-            username: hexToString(_username),
-            givenName: hexToString(_givenName),
-            familyName: hexToString(_familyName),
+            const _username = await userManager.getUsername({
+                from: wallets[0]
+            })
+            const _givenName = await userManager.getGivenName({
+                from: wallets[0]
+            })
+            const _familyName = await userManager.getFamilyName({
+                from: wallets[0]
+            })
+            return {
+                username: hexToString(_username),
+                givenName: hexToString(_givenName),
+                familyName: hexToString(_familyName),
+            }
         }
-    }
-    catch (err) {
-        console.log("user is not logged in", err)
+    } catch (err) {
+        console.error(err)
     }
 }
 
@@ -64,7 +72,7 @@ export const createUser = async (username, givenName, familyName) => {
                     from: wallets[0]
                 }
             )
-
+        markLoggedIn()
         return response
     }
     catch (err) {
