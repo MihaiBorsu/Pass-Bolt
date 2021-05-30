@@ -20,6 +20,7 @@ export default class Header extends React.Component {
         loggedIn: true,
         userInfo,
       })
+      console.log(userInfo)
     }
     catch (err) {
       console.error("Couldn't find user data, maybe you did not create one yet?", err)
@@ -35,13 +36,13 @@ export default class Header extends React.Component {
               <Logotype />
             </a>
           </Link>
-          <nav>
+          {/* <nav>
             {true && (
               <Nav
-                userInfo={userInfo}
+                userInfo={ userInfo }
               />
             )}
-          </nav>
+          </nav> */}
         </Center>
 
         <style jsx>{`
