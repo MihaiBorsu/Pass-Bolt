@@ -1,10 +1,15 @@
 import Link from "next/link"
+import AddNewPasswordIcon from "../icons/add_password.svg"
 
-export default ({ userInfo }) => {
+export default ({ userInfo, togglePasswordModal }) => {
   const { username, givenName, familyname } = userInfo
 
   return (
     <nav>
+      <button onClick={togglePasswordModal}>
+        <AddNewPasswordIcon />
+      </button>
+
       <Link href={`/profile?u=${username}`}>
         <a className="username">
           <span>
@@ -28,9 +33,8 @@ export default ({ userInfo }) => {
           display: inline-block;
           vertical-align: middle;
           cursor: pointer;
-          margin: 0 10px;
+          margin: 0 7px;
           transition: background-color 0.1s;
-          color: inherit;
         }
         nav button:hover, 
         nav a:hover {

@@ -5,17 +5,20 @@ import { Center } from "./Layout"
 import Logotype from "../icons/bps_logo.svg"
 import { getUserLoggedIn } from "../web3/users"
 import Nav from "./Nav"
+import Modal from "./Modal"
+import PasswordAdder from './PasswordAdder'
 
 export default class Header extends React.Component {
 
   state = {
     loggedIn: false,
     userInfo: {},
+    showPasswordModal: false,
   }
 
   async componentDidMount() {
     try {
-      const userInfo = await getUserLoggedIn()
+      const userInfo= await getUserLoggedIn()
       this.setState({
         loggedIn: true,
         userInfo,
@@ -26,7 +29,17 @@ export default class Header extends React.Component {
     }
   }
 
+  togglePasswordModal = () => {
+    const { showPasswordModal } = this.state
+
+    this.setState({
+      showPasswordModal: !showPasswordModal,
+    })
+  }
+
   render() {
+    console.log("in render log ",this.state.userInfo, "bool", this.state.loggedIn)
+    const {loggedIn, userInfo, showPasswordModal } = this.state
     return (
       <header>
         <Center>
@@ -36,13 +49,20 @@ export default class Header extends React.Component {
             </a>
           </Link>
           <nav>
-            {true && (
+            {loggedIn && (
               <Nav
                 userInfo={userInfo}
+                togglePasswordModal={this.togglePasswordModal}
               />
             )}
           </nav>
         </Center>
+
+        {showPasswordModal && (
+            <Modal onClose={this.togglePasswordModal}>
+              <PasswordAdder onClose={this.togglePasswordModal} />
+            </Modal>
+        )}
 
         <style jsx>{`
           header {

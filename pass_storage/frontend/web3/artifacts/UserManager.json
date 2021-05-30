@@ -6041,10 +6041,16 @@
       "links": {},
       "address": "0x962917D662eF1c1B9dad7C2646C4707DF9Ca645A",
       "transactionHash": "0x52b2dc29c550cc027934ac25ba73eb182189a0cc92b43796eb584b355f3ea90a"
+    },
+    "1622379752574": {
+      "events": {},
+      "links": {},
+      "address": "0xc900b50eD30839fAd4EDF5441B9eB41dFb717d6B",
+      "transactionHash": "0x735ac65d4cc5bbaedaeb34b8ca5cefbfe2cf8370ddc57a6608c7a0b212e4bba0"
     }
   },
   "schemaVersion": "3.4.0",
-  "updatedAt": "2021-05-28T18:20:34.765Z",
+  "updatedAt": "2021-05-30T13:26:47.652Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

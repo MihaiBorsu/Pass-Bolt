@@ -68,7 +68,7 @@ export default class RegistrationForm extends React.Component {
     const { username, givenName, _familyname } = this.state
 
     try {
-      await createUser(username, givenName, "fam234")
+      await createUser(username, givenName, _familyname)
 
       alert("Your user has been created!")
     } catch (err) {

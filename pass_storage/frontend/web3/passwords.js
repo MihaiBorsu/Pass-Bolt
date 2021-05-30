@@ -66,15 +66,16 @@ export const getPasswordIdsFromUser = async () => {
     }
 }
 
-export const createPassword = async (passHash, passUsername, url) => {
+export const createPassword = async (_passHash, _passUsername, _url) => {
     const passManager = await getInstance(PasswordManager)
     try {
         await ethereum.enable()
         const wallets = await eth.getAccounts()
+        console.log(_passHash,_passUsername,_url)
         const response = await passManager.createPassword(
-            passHash,
-            passUsername,
-            url,
+            _passHash,
+            _passUsername,
+            _url,
             {
                 from: wallets[0]
             }

@@ -35,7 +35,7 @@ export const getUserLoggedIn = async () => {
         }
     }
     catch (err) {
-        console.error(err)
+        console.log("user is not logged in", err)
     }
 }
 
