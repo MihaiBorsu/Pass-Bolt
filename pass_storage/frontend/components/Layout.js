@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Header from "./Header"
+import Footer from "./Footer"
 
 export const Center = ({ children, style }) => (
     <div style={style}>
@@ -9,7 +10,7 @@ export const Center = ({ children, style }) => (
       div {
         max-width: 1000px;
         margin: 0 auto;
-        padding: 20px;
+        padding: 10px;
       }
     `}</style>
   </div>
@@ -26,7 +27,9 @@ export const Page = ({ children }) => (
       <main>
         {children}
       </main>
-  
+
+      <Footer /> {}
+
       <style global jsx>{`
         * {
           margin: 0;

@@ -6,6 +6,7 @@ import MetaMaskLogo from "../icons/metamask.svg"
 import Button from "../components/Button"
 import Modal from "../components/Modal"
 import RegistrationForm from "../components/RegistrationForm"
+import { getState } from "../components/Header"
 
 export default class IndexPage extends React.Component {
    
@@ -72,10 +73,12 @@ export default class IndexPage extends React.Component {
 
             <div className="disclaimer">
               <p>
-                MetaMask will automatically open and ask you to confirm a transaction.
+                MetaMask will open and ask your permision to complete a transaction
               </p>
+            </div>
+            <div className="disclaimer">
               <p>
-                Please note that creating an account on the Ethereum blockchain costs a small amount of Ether.
+                The transaction costs a small amount of ether which will be charged from your metamask wallet
               </p>
             </div>
           </div>
@@ -110,6 +113,7 @@ export default class IndexPage extends React.Component {
             text-transform: uppercase;
             max-width: 520px;
             display: inline-block;
+            margin-top: 50px;
           }
           mark {
             color: inherit;
@@ -121,7 +125,7 @@ export default class IndexPage extends React.Component {
             position: relative;
             max-width: 320px;
             text-align: center;
-            margin-top: 120px;
+            margin-top: 60px;
           }
           .right-side :global(svg) {
             position: absolute;
@@ -129,7 +133,7 @@ export default class IndexPage extends React.Component {
             margin-top: -8px;
           }
           .disclaimer {
-            font-size: 14px;
+            font-size: 20px;
             color: rgba(255,255,255,0.8);
             line-height: 23px;
             font-weight: 400;

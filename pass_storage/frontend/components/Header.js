@@ -51,14 +51,13 @@ export default class Header extends React.Component {
               <Logotype />
             </a>
           </Link>
-          <nav>
             {loggedIn && (
               <Nav
                 userInfo={userInfo}
                 togglePasswordModal={this.togglePasswordModal}
               />
             )}
-          </nav>
+          
         </Center>
 
         {showPasswordModal && (
