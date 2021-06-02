@@ -1,6 +1,25 @@
 import React from 'react'
 import { createPassword } from "../web3/passwords"
 import Button from './Button'
+var cryptico = require("cryptico");
+
+function CryptoObj(passPhrase)
+{
+   this.bits = 1024; 
+   this.passPhrase = passPhrase;
+   this.rsaKey = cryptico.generateRSAKey(this.passPhrase,this.bits);
+   this.rsaPublicKey = cryptico.publicKeyString(this.rsaKey);
+
+   this.encrypt = function(message){
+     var result = cryptico.encrypt(message,this.rsaPublicKey);
+     return result.cipher;
+   };
+
+   this.decrypt = function(message){
+     var result = cryptico.decrypt(message, this.rsaKey);
+     return result.plaintext;
+   };
+}
 
 const Input = ({ title, value, onChange }) => (
     <div>
@@ -44,9 +63,10 @@ const Input = ({ title, value, onChange }) => (
 
 export default class PasswordModal extends React.Component {
     state = {
-        _passHash: "",
+      password: "",
         usernameForPass: "",
         url: "",
+        superPassword: "",
     }
 
     updateField = (fieldName, e) => {
@@ -59,7 +79,10 @@ export default class PasswordModal extends React.Component {
     password = async () => {
         const { onClose } = this.props
 
-        const { _passHash, usernameForPass, url } = this.state
+        const { password, usernameForPass, url, superPassword } = this.state
+
+        const encryptor = new CryptoObj(superPassword)
+        const _passHash = encryptor.encrypt(password)
 
         await createPassword(_passHash, usernameForPass, url)
         alert("Password has been added to the blockchain!")
@@ -69,11 +92,12 @@ export default class PasswordModal extends React.Component {
 
     render () {
         const { onClose } = this.props
-        const { _passHash } = this.state._passHash
+        const { password } = this.state.password
         const { usernameForPass } = this.state.usernameForPass
         const { url } = this.state.url
+        const { superPassword } = this.state.superPassword
 
-        const disabled = (_passHash === "" || usernameForPass === "" || url === "")
+        const disabled = (password === "" || usernameForPass === "" || url === "" || superPassword === "")
 
         return (
             <div>
@@ -82,8 +106,13 @@ export default class PasswordModal extends React.Component {
                 </h3>
 
                 <Input 
-                    title="passHash" 
-                    onChange={e => this.updateField("_passHash", e)} 
+                    title="Password" 
+                    onChange={e => this.updateField("password", e)} 
+                />
+
+                <Input
+                    title="Super Password"
+                    onChange={e => this.updateField("superPassword", e)}
                 />
 
                 <Input 

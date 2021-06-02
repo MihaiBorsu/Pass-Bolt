@@ -1,27 +1,112 @@
 import Link from "next/link"
+import Modal from "./Modal"
+import SuperpassCheckpoint from "./SuperpassCheckpoint"
+import Button from './Button'
 
-export default ({ password }) => {
+var cryptico = require("cryptico");
+
+function CryptoObj(passPhrase) {
+   this.bits = 1024; 
+   this.passPhrase = passPhrase;
+   this.rsaKey = cryptico.generateRSAKey(this.passPhrase,this.bits);
+   this.rsaPublicKey = cryptico.publicKeyString(this.rsaKey);
+
+   this.encrypt = function(message){
+     var result = cryptico.encrypt(message,this.rsaPublicKey);
+     return result.cipher;
+   };
+
+   this.decrypt = function(message){
+     var result = cryptico.decrypt(message, this.rsaKey);
+     return result.plaintext;
+   };
+}
+
+function CheckSuperpass(passwordHash) {
+    let superPass = document.getElementById("superPass")
+    // if(superPass && passwordHash){
+
+    //     this.encryptor = new CryptoObj(superPass)
+    //     this.passwordHash = passwordHash
+
+    //     this.retrivePassword = function(){
+    //         return this.encryptor.decrypt(this.passwordHash)
+    //     }
+    // }
+    // return null
+    return superPass
+}
+
+
+const Input = ({ title, value, onChange }) => (
+    <div>
+      <label>
+        {title}
+      </label>
+  
+      <input value={value} onChange={onChange} />
+  
+      <style jsx>{`
+        div {
+          border-bottom: 1px solid rgba(0,0,0,0.13);
+          margin: 0 -14px;
+          padding: 0 14px;
+        }
+        div:first-of-type {
+          border-top: 1px solid rgba(0,0,0,0.13);
+        }
+        label {
+          font-size: 13px;
+          color: rgba(81,81,112,0.66);
+          text-transform: uppercase;
+          display: block;
+          margin-top: 8px;
+        }
+        input {
+          width: 100%;
+          box-sizing: border-box;
+          font-size: 17px;
+          padding-top: 8px;
+          padding-bottom: 13px;
+          border: none;
+        }
+        input:focus {
+          border: none;
+          outline: none;
+        }
+      `}</style>
+    </div>
+  )
+
+export default ({ password }) => { 
+
     const { passwordHash, passwordUserName, passwordUrl } = password
     console.log("inside password:    ", passwordHash)
+    localStorage.setItem("passwordHash",passwordHash)
     return (
         <div className="password">
 
         <div className="info">
+
             <div className="top">
-            <Link href={`${passwordUrl}`}>
-                <a className="username">
-                Link: {passwordUrl}
-                </a>
-            </Link>
+                <Link href={`${passwordUrl}`}>
+                    <a className="username">
+                    Link: {passwordUrl}
+                    </a>
+                </Link>
             </div>
+
             <div className="top">
-            <p>
-                Username for your password: {passwordUserName}
-            </p>
+                <p>
+                    Username for your password: {passwordUserName}
+                </p>
             </div>
-            <p>
-            Your password: {passwordHash}
-            </p>
+
+            <div>
+                <SuperpassCheckpoint />
+                    
+            </div>
+
         </div>
 
         <style jsx>{`
@@ -57,6 +142,13 @@ export default ({ password }) => {
             line-height: 24px;
             margin-top: 6px;
             }
+            h3 {
+                padding-bottom: 10px;
+            }
+            footer {
+                text-align: right;
+                padding-top: 16px;
+            }
             @media (max-width: 400px) {
             .password {
                 padding: 14px;
@@ -76,4 +168,5 @@ export default ({ password }) => {
         `}</style>
         </div>
     )
+    
 }

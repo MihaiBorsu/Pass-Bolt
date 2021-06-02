@@ -72,7 +72,6 @@ export const createUser = async (username, givenName, familyName) => {
                     from: wallets[0]
                 }
             )
-        markLoggedIn()
         return response
     }
     catch (err) {
