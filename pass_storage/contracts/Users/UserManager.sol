@@ -52,4 +52,17 @@ contract UserManager is ManagerParent {
 
         return _userDataBase.getFamilyName(_userId);
     }
+
+    function checkUserExists() public view returns (bool) {
+        Dispatcher _dipatcher = Dispatcher(dispatcherAddress);
+
+        address _userDataBaseAddress = _dipatcher.getAddress("UserDataBase");
+        UserDataBase _userDataBase = UserDataBase(_userDataBaseAddress);
+        uint _userId = _userDataBase.addresses(msg.sender);
+
+        if (_userId != 0) {
+            return true;
+        }
+        return false;
+    }
 } 
