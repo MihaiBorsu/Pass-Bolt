@@ -28,7 +28,7 @@ export const Page = ({ children }) => (
         {children}
       </main>
 
-      <Footer /> {}
+      {/* <Footer /> {} */}
 
       <style global jsx>{`
         * {

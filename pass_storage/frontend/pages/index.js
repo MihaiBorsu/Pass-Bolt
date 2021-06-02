@@ -7,6 +7,9 @@ import Button from "../components/Button"
 import Modal from "../components/Modal"
 import RegistrationForm from "../components/RegistrationForm"
 import { getState } from "../components/Header"
+import Footer from "../components/Footer"
+
+
 
 export default class IndexPage extends React.Component {
    
@@ -104,6 +107,8 @@ export default class IndexPage extends React.Component {
           </Modal>
         )}
 
+        <Footer solid={true} />
+
         <style jsx>{`
           h2 {
             font-size: 50px;
@@ -141,6 +146,7 @@ export default class IndexPage extends React.Component {
           }
         `}</style>
       </Page>
+      
       );
     }
   }
