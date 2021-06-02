@@ -69,20 +69,30 @@ export default class CheckpointModal extends React.Component {
     updateField = (fieldName, e) => {
         const newState = {}
         newState[fieldName] = e.target.value
-        newState["passwordHash"] = this.passwordHash
-    
         this.setState(newState)
     }
 
     seePassword = () => {
-        // console.log("from storage: ",localStorage.getItem("passwordHash"))
-        console.log(this.state.superPassword)
-        const passHash = localStorage.getItem("passwordHash")
+        console.log("from storage got passEncrypted: ",localStorage.getItem("passwordHash"))
+
+        if (this.state.passwordHash === "") {
+          const passHash = localStorage.getItem("passwordHash")
+          this.state.passwordHash = passHash
+        }
+
         const superPass = this.state.superPassword
 
-        const encryptor = new CryptoObj(superPass)
+
+        var encryptor = new CryptoObj(superPass)
+        console.log("pass encrypted id: ", this.state.passwordHash)
+        console.log("superpassword is: ", superPass)
+        var password = encryptor.decrypt(this.state.passwordHash)
         
-        console.log("unhashed", encryptor.decrypt(passHash))
+        console.log("password after decription is: ", password)
+
+        if (password) {
+          return password
+        }
     }
 
     render () {
@@ -99,10 +109,15 @@ export default class CheckpointModal extends React.Component {
                 />
 
                 <footer>
-                    <Button onClick={this.seePassword()}>
+                    {/* <Button onClick={this.seePassword()}>
                         See your Password
-                    </Button>
+                    </Button> */}
                     {/* <button onClick={this.seePassword()}></button> */}
+                    <div className="top">
+                        <p>
+                            Your Password is: {this.seePassword()}
+                        </p>
+                    </div>
                 </footer>
 
                 <style jsx>{`
